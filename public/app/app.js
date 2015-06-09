@@ -3,6 +3,7 @@ angular.module("app", [
    // 'app.ishouldnotbehere',
     'app.hero',
     'app.posters',
+    'app.about',
     'posters.service',
     'ngNewRouter',
     'ngAria',
@@ -64,7 +65,13 @@ angular.module("app", [
             }, as: 'contact'
             }
             ,
-
+            {
+                path: '/about', components: {
+                hero: 'hero',
+                content: 'about'
+            }, as: 'about'
+            }
+            ,
         ]);
 
     }

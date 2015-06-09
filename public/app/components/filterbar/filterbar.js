@@ -31,7 +31,7 @@ FilterbarController.prototype.tabClick = function(i) {
             this.loc.path( "/contact" );
             break;
         case 2:
-
+            this.loc.path( "/about" );
             break;
 
     }

@@ -19,24 +19,29 @@
 
         var posters = this;
 
-        posters.tiles = buildGridModel({
-            title: "Title",
-            background: "red",
-            width:"200px",
-            height:"300px",
-            id: null,
-            isAnimating:false
+        self.data.then(function(listProducts) {
+
+            posters.tiles = buildGridModel({
+                title: "Title",
+                background: "red",
+                width: "200px",
+                height: "300px",
+                id: null,
+                isAnimating: false,
+                isClicked: false
+            },listProducts.data.products);
+
         });
 
 
-        function buildGridModel(tileTmpl) {
+        function buildGridModel(tileTmpl,products) {
             console.log('BUILDING');
             var it, results = [];
             for (var j = 0; j < 20; j++) {
                 it = angular.extend({}, tileTmpl);
                 it.id = j;
-               // it.icon = it.icon + (j + 1);
-                it.title = it.title + (j + 1);
+                // it.icon = it.icon + (j + 1);
+                it.title = products[j].title;
                 it.span = {row: "1", col: "1"};
                 it.background = "white";
                 it.span.row = it.span.col = 1;
@@ -48,17 +53,30 @@
             return results;
         }
 
-
     }
 
-
+    PostersController.prototype.lastItemClicked = null;
     PostersController.prototype.mouseHndlr = function ($event,item) {
         var card = angular.element($event.target).parent();
         switch($event.type) {
             case "click":
                 console.log(card);
+                if(PostersController.lastItemClicked != null)
+                    PostersController.lastItemClicked.isClicked = false;
+
+                item.isClicked = true;
+                PostersController.lastItemClicked = item
+
                 break;
             default:
+
+            case 'mouseover':
+                item.isAnimating = true;
+                break;
+            case 'mouseout':
+                item.isAnimating = false;
+                break;
+
 
         }
     }

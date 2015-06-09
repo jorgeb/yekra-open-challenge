@@ -25,7 +25,7 @@
     <md-grid-tile ng-repeat= "tile in posters.tiles"
                   md-rowspan= "{{tile.span.row}}"
                   md-colspan= "{{tile.span.col}}"
-                  ng-class= "tile.background"
+                  ng-class= "[tile.background,{'ng-enter':tile.isAnimating,'ng-click':tile.isClicked}]"
                   ng-click= "posters.mouseHndlr($event,tile)"
                   ng-mouseover= "posters.mouseHndlr($event,tile)"
                   ng-mouseout= "posters.mouseHndlr($event,tile)"

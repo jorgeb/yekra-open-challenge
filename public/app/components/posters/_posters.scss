@@ -1,4 +1,5 @@
 @import "compass/css3/filter";
+@import "compass/css3";
 
 
 .posters{
@@ -60,6 +61,11 @@ md-grid-list{
   to {  @include filter(blur(8px));}
 }
 
+@include keyframes(fade-in-tile) {
+  from { opacity: 1;}
+  to { opacity: .2;}
+}
+
 
 .ng-animate {
   &.ng-enter {
@@ -70,5 +76,15 @@ md-grid-list{
   &.ng-click {
 
     //@include animation(fade-out .4s ease-out);
+  }
+}
+
+.animate-repeat{
+  &.ng-enter {
+    @include animation(fade-in-tile .4s ease-out forwards);
+  }
+
+  &.ng-click {
+    @include box-shadow(3px 4px 10px black)
   }
 }
